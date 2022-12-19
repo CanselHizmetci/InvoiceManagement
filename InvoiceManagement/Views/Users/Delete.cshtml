@@ -1,0 +1,20 @@
+﻿@model InvoiceManagement.Domain.Entities.ApplicationUser
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3>Are you sure you want to delete this user?</h3>
+<div>
+    <h4>@Model.Name @Model.Surname</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<InvoiceManagement.Service.DTOs.DebtDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                DueTime
+            </th>
+            <th>
+                Apartment
+            </th>
+            <th>
+                IsPaid
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueTime)
+                </td>
+                <td>
+                    @item.Apartment.Block.Title No @item.Apartment.ApartmentNumber
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPaid)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class='btn btn-success ml-1 text-white'><i class="fas fa-pencil-alt" aria-hidden="true"></i> </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class='btn btn-danger ml-1 text-white'><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

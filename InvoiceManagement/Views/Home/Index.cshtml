@@ -1,0 +1,35 @@
+﻿@using InvoiceManagement.Service.Abstracts
+@using Microsoft.AspNetCore.Identity
+@using InvoiceManagement.Domain.Entities
+@model IEnumerable<InvoiceManagement.Controllers.HomeController.AdminHomeViewModel>
+@inject IApartmentService _apartmentService
+@inject UserManager<ApplicationUser> _user
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@((await _apartmentService.Get()).Count)</h3>
+                <p>Apartments Count</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <a href="@Url.Action("Index", "Apartments")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-orange">
+            <div class="inner">
+                <h3>@_user.Users.Count(c=>!c.IsDeleted)</h3>
+                <p>Users Count</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <a href="@Url.Action("Index", "Users")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>

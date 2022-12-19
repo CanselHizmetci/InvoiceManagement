@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InvoiceManagement.Service.DTOs.InvoiceDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               InvoiceNumber
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                InvoiceReadDate
+            </th>
+            <th>
+                InvoiceType
+            </th>
+            <th>
+                DueTime
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceReadDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Type.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class='btn btn-success ml-1 text-white'><i class="fas fa-pencil-alt" aria-hidden="true"></i> </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class='btn btn-warning ml-1 text-white'><i class="fas fa-search" aria-hidden="true"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class='btn btn-danger ml-1 text-white'><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

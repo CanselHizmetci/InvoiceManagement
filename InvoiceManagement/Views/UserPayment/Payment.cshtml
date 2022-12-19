@@ -1,0 +1,63 @@
+﻿@model InvoiceManagement.Controllers.UserPaymentController.PayModel
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Payment for @ViewBag.DebtInfo</h3>
+                </div>
+                <form asp-controller="UserPayment" asp-action="Pay" class="card-body">
+                    <div class="row">
+                        <input name="DebtId" type="hidden" value="@ViewBag.DebtId" />
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="FullName">Card Owner Name</label>
+                                <input asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="CreditCardNo">Card Number</label>
+                                <input asp-for="CreditCardNo" class="form-control" />
+                                <span asp-validation-for="CreditCardNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="ExpirationMonth">Exp Month</label>
+                                <input asp-for="ExpirationMonth" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm" data-mask="" inputmode="numeric" />
+                                <span asp-validation-for="ExpirationMonth" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="ExpirationYear">Exp Year</label>
+                                <input asp-for="ExpirationYear" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yy" data-mask="" inputmode="numeric" />
+                                <span asp-validation-for="ExpirationYear" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="Cvv">Cvv</label>
+                                <input asp-for="Cvv" class="form-control" />
+                                <span asp-validation-for="Cvv" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div class="col-sm-12">
+                                <span class="text-danger">@ViewBag.ErrorMessage</span>
+                            </div>
+
+                        }
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary">Pay @ViewBag.Amount</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

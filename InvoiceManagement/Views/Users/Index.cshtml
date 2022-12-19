@@ -1,0 +1,79 @@
+﻿@using InvoiceManagement.Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<InvoiceManagement.Domain.Entities.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+    var userManager = ViewBag.UserManager as UserManager<ApplicationUser>;
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Role(s)
+            </th>
+            <th>
+                Apartment(s)
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Have a vehicle
+            </th>
+            <th>
+                LicensePlate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Surname
+                </td>
+                <td>
+                    @string.Join(", ",await userManager.GetRolesAsync(item))
+                </td>
+                <td>
+                    @string.Join(", ",item.Apartments.Select(c=> $"{c.Block.Title} No {c.ApartmentNumber}").ToList())
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.HaveAVehicle
+                </td>
+                <td>
+                    @item.LicensePlate
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class='btn btn-success ml-1 text-white'><i class="fas fa-pencil-alt" aria-hidden="true"></i> </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class='btn btn-danger ml-1 text-white'><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

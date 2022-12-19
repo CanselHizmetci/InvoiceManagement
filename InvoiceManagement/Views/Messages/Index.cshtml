@@ -1,0 +1,55 @@
+﻿@model IEnumerable<InvoiceManagement.Service.DTOs.MessageDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Content
+            </th>
+            <th>
+                User
+            </th>
+            <th>Sender</th>
+            <th>Send Date</th>
+            <th>Is Readed</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @item.Sender.Name @item.Sender.Surname
+                </td>
+                <td>
+                    @(item.IsOutgoing ? "User Sended" : "Admin Sended")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendDate)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.IsReaded)</td>
+                <td>
+                    @if (!item.IsReaded && item.IsOutgoing)
+                    {
+                        <a asp-action="IsRead" asp-route-Id="@item.Id" class='btn btn-info ml-1 text-white'><i class="fas fa-check" aria-hidden="true"></i> </a>
+                    }
+                    <a asp-action="Send" asp-route-SenderId="@item.SenderId" class='btn btn-success ml-1 text-white'><i class="fas fa-reply" aria-hidden="true"></i> </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
