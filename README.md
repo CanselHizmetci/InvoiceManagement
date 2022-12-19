@@ -32,16 +32,16 @@ Username: user@gmail.com
 Password: StandartUser123.
 ## Predefined Credit Cards
 ### Card 1(Balance: 1000)
-Credit card no: 1111222233334444
-Owner Name: Owner Name
-Exp Month: 10
-Exp Year: 24
-Cvv: 123
+- Credit Card No: 1111222233334444
+- Owner Name: Owner Name
+- Exp Month: 10
+- Exp Year: 24
+- Cvv: 123
 
 ---
 ### Card 2(Balance: 5000)
-Credit card no: 1234567812345678
-Owner Name: Owner Name
-Exp Month: 10
-Exp Year: 26
-Cvv: 123
+- Credit Card No: 1234567812345678
+- Owner Name: Owner Name
+- Exp Month: 10
+- Exp Year: 26
+- Cvv: 123
